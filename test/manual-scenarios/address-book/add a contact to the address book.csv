@@ -1,0 +1,11 @@
+Step,Test Steps,Test Data,Expected Result
+1,Open the extension.,,"Welcome Back screen is shown."
+2,Unlock wallet using password (min 8 chars).,"Ether balance and wallet address on Overview. Network: Ethereum Mainnet."
+3,Select "Expand view" from wallet menu.,,"New tab opens with expanded extension view."
+4,Open Accounts options menu.,,"Accounts menu popover is displayed."
+5,Navigate to Contacts in Settings menu.,,"Contact list is displayed."
+6,Add new contact.,,"New contact screen appears."
+7,Input username,e.g. "Test User",,
+8,Input public address,e.g. "0x56A355d3427bC2B1E22c78197AF091230919Cc2A",,
+9.Save new contact.,,"Contact added to list"
+10.Select newly created contact,,Username & public address are displayed.
