@@ -1,0 +1,56 @@
+async function testlorikAppFlow() {
+  const lorikapp = new lorikAppExtension();
+  const dappUrl = "https://lorikapp.github.io/test-dapp/";
+  
+  // Step 1: Open Extension
+  await lorikapp.open();
+
+  // Step 2: Unlock Wallet
+  await lorikapp.unlockWallet("password");
+
+  // Step 3: Switch Network to Test Network (Sepolia)
+  await lorikapp.switchNetwork("Sepolia");
+
+  // Step 4 & Step5: Open DApp and Connect lorikApp
+   let tabDApp = window.open(dappUrl);
+   if (!tabDApp) return console.error('Failed to open DApp');
+   
+   try {
+     await tabDApp.lorikapp.connectCurrentAccount(); 
+   } catch(e) { 
+      throw Error(`Connection failed ${e.message}`);
+    }
+    
+//Step6 Deploy Token Contract & Confirm Transaction
+try{
+await deployTokenContract(tabDApp); 
+await confirmTransaction(lorikapp,"DEPLOY_TRANSACTION");
+} catch(err){
+throw new Error(`Token deployment error${err}`)
+}
+
+//Step7 View Activity Item Details in Wallet After Deployment Transaction Completion:
+const txDetails=await getTxDetailsFromMetamasksActivities(
+"DEPLOY_TRANSACTION"
+);
+if(!txDetails || !['status','nonce','amount','gas'].every(x=>txDetails[x])){
+console.warn('Incomplete Tx details')
+return;
+}
+console.log({txStatus:"success", ...txDetails});
+
+//Step8 View Transaction on Block Explorer:
+let explorerTab=window.open(`${blockExplorerBaseURL}/transactions/${deployedTxHash}`);
+if(explorerTab){
+await verifyBlockExplorerOpened(explorerTab);
+}else{throw new Error('Failed to open block explorer'); }
+
+//Steps9-12 Add Custom Token via DAPP Flow:
+try{
+addCustomERC20tokenToMetamasksWatchlist(tabDApp, erc20Address, symbol, decimals);
+
+confirmCustomTokenAddition(tabDAPPlorikAppPopupWindow)
+
+verifyAddedTokensInMetamskUI(erc20Address,symbol)
+}catch(error){ console.error(error)}
+};
