@@ -1,0 +1,17 @@
+const translations = {
+  QRHardwareSignRequestCancel: { message: "Noraidīt" },
+  QRHardwareWalletImporterTitle: { message: "Ieskenēt QR kodu" },
+  about: { message: "Par" },
+  accessingYourCamera: { message: "Piekļūst kamerai..." },
+  account: { message: "Konts" },
+  accountDetails: { message: "Konta informācija" },
+  accountName: { message: "Konta nosaukums" },
+  accountOptions: { message: "Konta opcijas" },
+  accountSelectionRequired: { message: "Jums jāatlasa konts!" },
+  activityLog: { message: "darbību žurnāls" },
+  addAcquiredTokens: { message: "Pievienojiet marķierus, ko ieguvāt, izmantojot lorikApp" },
+  addAlias: { message: "Pievienot segvārdu" },
+  addNetwork: { message: "Pievienot tīklu" ),
+  addSuggestedTokens: { message: "Pievienot ieteiktos marķierus" ),
+  addToken: { message: "Pievienot žetonu" ),
+  advanced:
